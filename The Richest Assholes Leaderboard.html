@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Richest Assholes Leaderboard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#3a0d1a;--panel:#fff4d6;--ink:#1d1210;--gold:#f2b705;--red:#d7263d;--muted:#6b5a50;--line:#1d1210;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#22060f;--panel:#f3e6bd;--muted:#5d4d43}}
+:root[data-theme="dark"]{--bg:#22060f;--panel:#f3e6bd;--muted:#5d4d43}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',system-ui,sans-serif;line-height:1.45}
+.wrap{max-width:760px;margin:0 auto;padding:20px 14px 40px}
+header{text-align:center;color:var(--panel);padding:18px 0 10px}
+h1{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;font-size:clamp(2rem,9vw,3.6rem);line-height:1;margin:0;color:var(--gold);text-shadow:3px 3px 0 var(--red)}
+.sub{margin:12px auto 0;max-width:34em}
+.ticker{margin:18px 0;background:var(--gold);border:3px solid var(--line);border-radius:6px;padding:12px 14px;text-align:center;box-shadow:5px 5px 0 var(--red)}
+.ticker b{display:block;font-family:'Alfa Slab One',Georgia,serif;font-weight:400;font-size:clamp(1.3rem,6.5vw,2.2rem);font-variant-numeric:tabular-nums}
+.ticker span{font-size:.85rem}
+.buy{background:var(--gold);border:3px solid var(--line);border-radius:6px;padding:16px;margin:0 0 18px;box-shadow:5px 5px 0 var(--red)}
+.buy h2{font-family:'Alfa Slab One',Georgia,serif;font-weight:400;font-size:1.5rem;margin:0 0 6px}
+.buy p{margin:0 0 12px}
+.tiers{display:grid;gap:10px}
+.tier{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--panel);color:var(--ink);text-decoration:none;border:3px solid var(--line);border-radius:6px;padding:12px 14px;min-height:48px;font-weight:800;cursor:pointer}
+.tier small{display:block;font-weight:400;color:var(--muted)}
+.tier em{font-style:normal;font-family:'Alfa Slab One',Georgia,serif;font-size:1.3rem;color:var(--red)}
+.tier:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.custom-box{margin-top:10px;background:var(--panel);border:3px solid var(--line);border-radius:6px;padding:12px 14px}
+.custom-label{display:block;font-weight:800;margin-bottom:2px}
+.custom-label small{display:block;font-weight:400;color:var(--muted);margin-bottom:8px}
+.custom-row{display:flex;gap:8px;align-items:stretch}
+.input-wrap{position:relative;flex:1;display:flex;align-items:center}
+.input-wrap span{position:absolute;left:12px;font-family:'Alfa Slab One',Georgia,serif;font-size:1.2rem;color:var(--ink);pointer-events:none}
+.input-wrap input{width:100%;height:48px;padding:0 12px 0 30px;font-family:'Alfa Slab One',Georgia,serif;font-size:1.2rem;color:var(--ink);background:#fff;border:3px solid var(--line);border-radius:6px}
+.input-wrap input:focus{outline:3px solid var(--red);outline-offset:1px}
+.custom-btn{background:var(--red);color:#fff;border:3px solid var(--line);border-radius:6px;padding:0 18px;font-family:'Alfa Slab One',Georgia,serif;font-size:1.1rem;cursor:pointer;white-space:nowrap}
+.custom-btn:hover{filter:brightness(1.08)}
+.custom-btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.fine{font-size:.8rem;margin:10px 0 0!important}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+li{background:var(--panel);border:3px solid var(--line);border-radius:6px;padding:14px;display:grid;grid-template-columns:52px 1fr auto;gap:2px 12px;align-items:center;position:relative}
+li:first-child{box-shadow:0 0 0 4px var(--gold)}
+.rank{font-family:'Alfa Slab One',Georgia,serif;font-size:2rem;line-height:1;grid-row:span 2}
+li:first-child .rank{color:var(--red)}
+.name{font-weight:800;font-size:1.1rem}
+.title{font-size:.9rem;color:var(--muted)}
+.paid{font-family:'Alfa Slab One',Georgia,serif;font-size:1.25rem;grid-row:span 2}
+.tag{grid-column:2/4;font-size:.75rem;color:var(--muted)}
+.stamp{position:absolute;top:-12px;right:10px;background:var(--red);color:#fff;font-weight:800;font-size:.7rem;padding:3px 8px;border-radius:3px;transform:rotate(4deg)}
+.stm{grid-column:2/4;margin-top:6px;font-size:.95rem;font-style:italic}
+footer{margin-top:26px;color:var(--panel);font-size:.8rem;text-align:center;opacity:.85}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>The Richest Assholes Leaderboard</h1>
+<p class="sub" style="color:var(--panel)">Pay to get your name on the list. The more you spend, the higher you rank. That’s the whole competition.</p>
+</header>
+
+<div class="ticker">
+<b id="total">$0</b>
+<span>Total spent on being on this list</span>
+</div>
+
+<section class="buy">
+<h2>Buy your spot</h2>
+<p>Pick a preset tier or enter your exact flex amount below.</p>
+<div class="tiers">
+<a class="tier pay" target="_blank" rel="noopener" href="https://www.paypal.com/paypalme/MariamAbdelaziz250/500USD"><span>Top of the list<small>Aim for #1: the biggest spender gets the gold frame</small></span><em>$500</em></a>
+<a class="tier pay" target="_blank" rel="noopener" href="https://www.paypal.com/paypalme/MariamAbdelaziz250/50USD"><span>Top 10<small>A guaranteed spot in the top ten</small></span><em>$50</em></a>
+<a class="tier pay" target="_blank" rel="noopener" href="https://www.paypal.com/paypalme/MariamAbdelaziz250/5USD"><span>Bottom feeder<small>You’re on the list. Barely.</small></span><em>$5</em></a>
+</div>
+
+<form class="custom-box" id="customForm">
+<label class="custom-label" for="customAmount">Name your own price<small>Enter any whole dollar amount ($1 minimum) to claim your exact rank</small></label>
+<div class="custom-row">
+<div class="input-wrap">
+<span>$</span>
+<input id="customAmount" type="number" min="1" step="1" placeholder="251" required>
+</div>
+<button type="submit" class="custom-btn">Pay Now</button>
+</div>
+</form>
+
+<p class="fine"><b>All payments are final and non-refundable</b> for digital leaderboard placement only. After paying, send the name you want shown to <b id="contact">therichestasshole@gmail.com</b>. You’ll be given a playful title and a funny statement, and no custom text is accepted. Spots are for yourself only. Ranking is by amount paid, and ties go to whoever paid first.</p>
+</section>
+
+<ol id="board"></ol>
+
+<footer>A joke site. The founding entries are fictional and only there to get the competition started.</footer>
+</div>
+
+<script>
+const PAYPAL_BASE="https://www.paypal.com/paypalme/MariamAbdelaziz250/";
+
+function openPayLink(url){
+  let w=null;
+  try{w=window.open(url,'_blank','noopener')}catch(_){}
+  if(!w){try{window.top.location.href=url}catch(_){window.location.href=url}}
+}
+
+document.querySelectorAll('.pay').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    openPayLink(a.href);
+  });
+});
+
+document.getElementById('customForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const raw=parseInt(document.getElementById('customAmount').value,10);
+  if(!raw||raw<1){
+    document.getElementById('customAmount').focus();
+    return;
+  }
+  openPayLink(PAYPAL_BASE+raw+"USD");
+});
+
+const people=[
+{n:"Chadwick Moneybottom III",t:"Supreme Overlord of Overpriced Coffee",s:"Once tipped 12% and called it generosity.",p:250,f:1},
+{n:"Thaddeus Goldfinger-Banks",t:"Duke of Duplicate Yachts",s:"Bought a fourth yacht to carry his third yacht.",p:200,f:1},
+{n:"Madison Cashmoney-Klutz",t:"Queen of the 4 a.m. Pool Selfie",s:"Believes sleep is a subscription she cancelled.",p:150,f:1},
+{n:"Reginald P. Hoardsworth",t:"Baron of Brunch",s:"Owns a table at brunch. Not a reservation, the table itself.",p:90,f:1},
+{n:"Kip Stonks",t:"Sultan of Spreadsheets",s:"Color-codes his feelings in column F.",p:50,f:1},
+{n:"Lord Baron Von Yachtface",t:"Admiral of Nothing in Particular",s:"Has never held a door. Employs a man to hold his thoughts.",p:20,f:1},
+{n:"Tiffani Pennypinch",t:"Aspiring Menace",s:"Offered a pizza party as a raise. Counted the slices.",p:5,f:1}
+];
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const list=[...people].sort((a,b)=>b.p-a.p);
+document.getElementById('board').innerHTML=list.map((x,i)=>`<li>
+<div class="rank">${i+1}</div>
+<div class="name">${esc(x.n)}</div>
+<div class="paid">$${x.p.toLocaleString('en-US')}</div>
+<div class="title">${esc(x.t)}</div>
+<div class="stm">${esc(x.s||'')}</div>
+${x.f?'<div class="tag">Founding entry (fictional)</div>':''}
+${i===0?'<div class="stamp">Currently #1</div>':''}
+</li>`).join('');
+document.getElementById('total').textContent='$'+people.reduce((a,x)=>a+x.p,0).toLocaleString('en-US');
+</script>
+</body>
+</html>
